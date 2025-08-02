@@ -22,9 +22,9 @@ The datasets and experimental results are made publicly available following the 
 
 ### 🏆 Publication
 
-🎊 The [paper](https://www.sciencedirect.com/science/article/pii/S2666546824000995) has been published in the **JCR Q1** Elsevier journal '**[Energy and AI](https://www.sciencedirect.com/journal/energy-and-ai)**' 🎉. 
+The [paper](https://www.sciencedirect.com/science/article/pii/S2666546824000995) has been published in the **JCR Q1** Elsevier journal **[Energy and AI](https://www.sciencedirect.com/journal/energy-and-ai)** 🎊 
 
-🔥 The [preprint](https://arxiv.org/abs/2405.10452) is available on arXiv 🚀.
+The [preprint](https://arxiv.org/abs/2405.10452) is available on arXiv 🔥
 
 ### ⚙️ How to Use
 
@@ -79,7 +79,7 @@ cd scripts/bertopic
 python bert_grid_guardian.py
 ```
 
-### 📜 License
+### License
 
 This project is licensed under the **Apache 2.0 License** - see the [LICENSE](LICENSE) file for details.
 
@@ -91,7 +91,7 @@ For any questions or further information, please contact the project team at �
 
 ---
 
-### 🔖 Citation
+### Citation
 
 **If you use our code or refer to our publication, please cite the following BibTeX:**
 
