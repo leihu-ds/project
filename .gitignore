@@ -37,3 +37,11 @@ share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+# Raw and processed datasets
+datasets/raw/
+datasets/processed/
+*.zip
+*.csv
+*.json
+*.pkl
+*.parquet
