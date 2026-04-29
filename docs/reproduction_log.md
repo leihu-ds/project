@@ -57,4 +57,16 @@ Created the `docs` folder and added the following files:
 - `final_report_outline.md`
 
 ### Error / Issue:
-At first, nested
+At first, nested `docs` folders were created by mistake. The structure was then corrected so that all documentation files are now stored in one `docs` folder.
+
+### Output Files:
+- `docs/reproduction_log.md`
+- `docs/issues.md`
+- `docs/results_comparison.md`
+- `docs/final_report_outline.md`
+
+### Comparison with Paper:
+N/A
+
+### Notes:
+The documentation structure is ready for recording reproduction attempts, issues, and comparisons with the original paper.
