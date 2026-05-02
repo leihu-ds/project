@@ -46,7 +46,22 @@ These are different from the visible metadata files in the repository.
 ## Main finding
 
 The visible data files mostly contain metadata.
+## Guardian full-text recovery
 
+The original Guardian metadata file only contains fields such as `date`, `section`, and `url`.
+
+To make the data usable for topic modelling, I used the Guardian API to recover article titles and body text from the URLs.
+
+The recovery script collected 1,456 Guardian articles with full body text before the API rate limit stopped the run.
+
+The recovered data was converted into a model-ready JSONL format with these fields:
+
+```text
+title
+content.body
+date
+section
+url
 I did not find full text fields needed for topic modelling, such as article text, Reddit post body, tweet text, title, or cleaned text.
 
 Several model scripts also use hard-coded absolute paths.
