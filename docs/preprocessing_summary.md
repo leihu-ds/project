@@ -13,6 +13,7 @@ scripts/preprocessing/fetch_guardian_3000.py
 scripts/preprocessing/convert_guardian_for_models.py
 scripts/preprocessing/fetch_reddit_public_json.py
 scripts/preprocessing/convert_reddit_for_models.py
+scripts/preprocessing/recover_twitter_text_from_urls.py
 ```
 
 ## Reports generated
@@ -121,7 +122,9 @@ The main text field for modelling is `text`.
 
 The recovered Twitter data is stored locally as `datasets/twitter/twitter_for_models.jsonl`.
 
-The recovered Twitter data is not committed to GitHub. The repository only includes the recovery script and documentation.
+The recovered Twitter data is not committed to GitHub.The generated `.jsonl` files are ignored. 
+
+The repository only includes the recovery script and documentation.
 
 ## Recommendation
 
