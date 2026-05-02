@@ -101,6 +101,27 @@ permalink
 The main text field for modelling is `text`, which combines `title` and `selftext`.
 
 The recovered Reddit data is stored locally and is not committed to GitHub. The repository only includes the recovery and conversion scripts.
+## Twitter text recovery
+
+The original Twitter files mainly contain tweet ids, user ids, URLs, and related ids.
+
+I recovered Twitter/X text from tweet URLs and converted the recovered records into a model-ready JSONL format.
+
+The Twitter recovery produced 1,500 model-ready records with these fields:
+
+```text
+source
+tweet_id
+url
+text
+recovery_method
+```
+
+The main text field for modelling is `text`.
+
+The recovered Twitter data is stored locally as `datasets/twitter/twitter_for_models.jsonl`.
+
+The recovered Twitter data is not committed to GitHub. The repository only includes the recovery script and documentation.
 
 ## Recommendation
 
