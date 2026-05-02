@@ -41,4 +41,5 @@ The dataset contains 17,484 articles, sorted by date in descending order.
 
 - **Source:** The Guardian API
 - **Collection Method:** API-based data collection
-- **Collection Time Period:** 1945 to 2023
+- **Collection Time Period:** API may return articles across a long historical range. 
+- **The paper focuses on analysis within 1999 to 2023.
