@@ -2,13 +2,17 @@
 
 ## What I checked
 
-I checked the dataset files, data fields, record counts, and data loading paths.
+I checked the dataset files, data fields, record counts, data loading paths, Guardian full-text recovery, and Reddit text recovery.
 
 ## Scripts added
 
 ```text
 scripts/preprocessing/check_data_structure.py
 scripts/preprocessing/inspect_dataset_fields.py
+scripts/preprocessing/fetch_guardian_3000.py
+scripts/preprocessing/convert_guardian_for_models.py
+scripts/preprocessing/fetch_reddit_public_json.py
+scripts/preprocessing/convert_reddit_for_models.py
 ```
 
 ## Reports generated
@@ -46,6 +50,11 @@ These are different from the visible metadata files in the repository.
 ## Main finding
 
 The visible data files mostly contain metadata.
+
+I did not find full text fields needed for topic modelling, such as article text, Reddit post body, tweet text, title, or cleaned text.
+
+Several model scripts also use hard-coded absolute paths.
+
 ## Guardian full-text recovery
 
 The original Guardian metadata file only contains fields such as `date`, `section`, and `url`.
@@ -62,9 +71,36 @@ content.body
 date
 section
 url
-I did not find full text fields needed for topic modelling, such as article text, Reddit post body, tweet text, title, or cleaned text.
+```
 
-Several model scripts also use hard-coded absolute paths.
+The recovered full-text data is stored locally under `datasets/processed/guardian/`.
+
+The full-text data is not committed to GitHub. The repository only includes the recovery and conversion scripts.
+
+## Reddit text recovery
+
+The original Reddit metadata file only contains limited fields and does not provide enough full post text for topic modelling.
+
+I collected public Reddit posts using sustainability and circular economy keywords.
+
+The Reddit recovery script collected 1,400 public Reddit records.
+
+After filtering short or empty text records, 1,369 records were converted into a model-ready JSONL format with these fields:
+
+```text
+title
+selftext
+text
+subreddit
+keyword
+created_utc
+url
+permalink
+```
+
+The main text field for modelling is `text`, which combines `title` and `selftext`.
+
+The recovered Reddit data is stored locally and is not committed to GitHub. The repository only includes the recovery and conversion scripts.
 
 ## Recommendation
 

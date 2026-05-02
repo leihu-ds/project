@@ -45,3 +45,5 @@ datasets/processed/
 *.json
 *.pkl
 *.parquet
+*.jsonl
+*.jsonl
