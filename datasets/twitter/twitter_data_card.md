@@ -9,18 +9,18 @@
   - Unique users without external links: 12,458
 
 ## Data Files
-1. `data_twitter_external_links.json`
-   - Contains tweets with external links
-   - Structure: `{"urls": ["https://t.co/xxx"], "user_id": "username"}`
-   - Records: 41,575
 
-2. `skipped_tweets_processed.json`
-   - Contains unique user IDs of tweets without external links
-   - Structure: `{"user_id": "username"}`
-   - Records: 12,458
+1. `data_twitter.json`
+- Contains tweet metadata (tweet IDs, user IDs, URLs)
 
-3. `twitter_skipped_tweets.json`
-   - Original file containing all skipped tweets (for reference)
+2. `data_twitter_external_links.json`
+- Contains tweets with external links
+- Structure: {"urls": ["https://t.co/xxx"], "user_id": "username"}
+- Records: 41,575
+
+3. `data_twitter_related_ids.json`
+- Contains additional user IDs related to tweets
+- Records: 12,458
 
 ## Processing Notes
 - All user IDs are preserved in original format

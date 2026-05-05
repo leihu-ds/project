@@ -37,3 +37,26 @@ share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+# Raw and processed datasets
+datasets/raw/
+datasets/processed/
+*.zip
+*.csv
+*.json
+*.pkl
+*.parquet
+*.jsonl
+*.jsonl
+
+
+# Ignore processed data (model-ready datasets)
+datasets/processed/
+
+# Ignore large JSONL files
+*.jsonl
+
+# Mac system files
+.DS_Store
+
+# Python cache
+__pycache__/

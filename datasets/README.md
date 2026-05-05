@@ -1,28 +1,46 @@
-### Datasets Directory
+# Dataset Documentation
 
-**Update (June 2025):**
+## Dataset files checked
 
-Our dataset is now publicly available via the university's open access repository:
+| Platform | File | Format | Records | Fields |
+|---|---|---|---:|---|
+| Guardian | `datasets/theguardian/data_guardian.json` | JSON | 17,484 | `date`, `section`, `url` |
+| Reddit | `datasets/reddit/data_reddit.json` | JSON | 680 | `source`, `type`, `url`, `created_utc`, `post_id` |
+| Twitter | `datasets/twitter/data_twitter.json` | JSON | 5,298 | `id`, `user_id`, `url` |
+| Twitter | `datasets/twitter/data_twitter_external_links.json` | JSON | 41,575 | `urls`, `user_id` |
+| Twitter | `datasets/twitter/data_twitter_related_ids.json` | JSON | 12,458 | `user_id` |
 
-- **DOI:** [10.17861/85bf3f9d-dc42-4b5c-8e29-47ddd0f0f687](https://doi.org/10.17861/85bf3f9d-dc42-4b5c-8e29-47ddd0f0f687)
-- **License:** This dataset is released under the [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/) license.
+## Data checking scripts
 
-**Note:** Please use the DOI link above to access and download the data.
-
-This directory is designated for dataset documentation, metadata, and scripts related to data processing. If you use our dataset, please cite the DOI.
-
-```bibtex
-@dataset{song2025public,
-  author    = {Song, Junhao and Yuan, Yingfang and Chang, Kaiwen and Xu, Bing and Xuan, Jin and Pang, Wei},
-  title     = {Public Attention Text Dataset on Circular Economy for Topic Modelling},
-  year      = {2025},
-  publisher = {Heriot-Watt University},
-  doi       = {10.17861/85bf3f9d-dc42-4b5c-8e29-47ddd0f0f687},
-  url       = {https://doi.org/10.17861/85bf3f9d-dc42-4b5c-8e29-47ddd0f0f687},
-  note      = {EAI2024Data(.zip)}
-}
+```text
+scripts/preprocessing/check_data_structure.py
+scripts/preprocessing/inspect_dataset_fields.py
 ```
 
----
+## Reports
 
-It is imperative to ensure that any data shared here complies with ethical guidelines and legal standards to protect personal and sensitive information.
+```text
+docs/data_structure_report.md
+docs/dataset_fields_report.md
+```
+
+## Main notes
+
+The checked files mainly contain metadata.
+
+I did not find full text fields needed for topic modelling, such as article text, Reddit post body, tweet text, title, or cleaned text.
+
+The model scripts seem to expect other data files, such as:
+
+- `guardian_all_data`
+- `subreddit_posts_updated.json`
+- `twitter_junhao.csv`
+
+## Git note
+
+Local raw and processed data folders are ignored by Git:
+
+```text
+datasets/raw/
+datasets/processed/
+```
