@@ -47,3 +47,16 @@ datasets/processed/
 *.parquet
 *.jsonl
 *.jsonl
+
+
+# Ignore processed data (model-ready datasets)
+datasets/processed/
+
+# Ignore large JSONL files
+*.jsonl
+
+# Mac system files
+.DS_Store
+
+# Python cache
+__pycache__/
