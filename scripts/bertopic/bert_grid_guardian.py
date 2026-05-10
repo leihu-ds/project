@@ -118,7 +118,7 @@ def objective(trial):
     return coherence
 
 
-df = pd.read_json('/home/yy2046/Workspace/DCEE2023/datasets/theguardian/all_keywords_data/guardian_all_data', lines=True)
+df = pd.read_json('datasets/theguardian/data_guardian.json', lines=True)
 df.drop_duplicates(subset=['title'], inplace=True)
 
 data = [row.title + ' ' + str(row.content['body']) for index, row in df.iterrows()]
