@@ -21,6 +21,105 @@ This file records all reproduction attempts, configurations, outputs, and observ
 ### Comparison with Paper:
 ### Notes:
 ---
+---
+## Entry 1
+
+### Date:
+2026-04-06
+
+### Member:
+Lei Hu
+
+### Branch:
+main
+
+### Task:
+Initial environment setup, repository cloning, and dependency installation.
+
+### Dataset:
+Guardian / Reddit / Twitter (metadata only)
+
+### Script / Notebook:
+N/A
+
+### Environment:
+macOS (Apple Silicon)  
+Conda environment: dcee  
+Python 3.8  
+
+### Parameters:
+N/A
+
+### Result:
+- Successfully cloned the repository and created the conda environment.  
+- Installed dependencies from requirements.txt.  
+- Resolved compatibility issues by manually installing numpy==1.23.5 and spacy==3.5.0. Environment setup completed successfully.
+
+### Error / Issue:
+- spacy installation failed due to numpy version conflict.  
+- Some packages required Python >= 3.9 while the environment used Python 3.8.  
+- Initial scripts failed due to missing full-text data and incorrect file paths.
+
+### Output Files:
+N/A
+
+### Comparison with Paper:
+N/A
+
+### Notes:
+- The dataset only contains metadata (URLs, IDs) and lacks full-text data required for topic modelling.  
+- Some scripts contain hard-coded absolute paths, which need to be modified for reproducibility.  
+- This step prepares the environment for further preprocessing and modelling.
+---
+---
+## Entry 2
+
+### Date:
+2026-04-29
+
+### Member:
+Fan Zhao
+
+### Branch:
+member4
+
+### Task:
+Created the documentation structure for tracking the reproduction process.
+
+### Dataset:
+N/A
+
+### Script / Notebook:
+N/A
+
+### Environment:
+GitHub web interface
+
+### Parameters:
+N/A
+
+### Result:
+Created the `docs` folder and added the following files:
+- `reproduction_log.md`
+- `issues.md`
+- `results_comparison.md`
+- `final_report_outline.md`
+
+### Error / Issue:
+At first, nested `docs` folders were created by mistake. The structure was then corrected so that all documentation files are now stored in one `docs` folder.
+
+### Output Files:
+- `docs/reproduction_log.md`
+- `docs/issues.md`
+- `docs/results_comparison.md`
+- `docs/final_report_outline.md`
+
+### Comparison with Paper:
+N/A
+
+### Notes:
+The documentation structure is ready for recording reproduction attempts, issues, and comparisons with the original paper.
+---
 ## Entry 3
 
 ### Date:
@@ -455,7 +554,7 @@ The documentation explains the mismatch between the paper's full-text data requi
 ### Notes:
 Recovered local model-ready data files can be shared separately with group members in a zip file, but they are not included in the PR. The three data sources were recovered with different methods: Guardian API for The Guardian, public Reddit JSON access for Reddit, and oEmbed recovery from tweet URLs for Twitter/X.
 ---
-## Entry 3
+## Entry 12
 
 ### Date:
 2026-05-05
@@ -500,103 +599,74 @@ The original paper assumes access to full-text data, which was not provided. Our
 
 ### Notes:
 The pipeline improves reproducibility by removing hard-coded paths and standardizing data processing steps.
-
 ---
-## Entry 2
+## Entry 13
 
 ### Date:
-2026-04-29
-
-### Member:
-Fan Zhao
-
-### Branch:
-member4
-
-### Task:
-Created the documentation structure for tracking the reproduction process.
-
-### Dataset:
-N/A
-
-### Script / Notebook:
-N/A
-
-### Environment:
-GitHub web interface
-
-### Parameters:
-N/A
-
-### Result:
-Created the `docs` folder and added the following files:
-- `reproduction_log.md`
-- `issues.md`
-- `results_comparison.md`
-- `final_report_outline.md`
-
-### Error / Issue:
-At first, nested `docs` folders were created by mistake. The structure was then corrected so that all documentation files are now stored in one `docs` folder.
-
-### Output Files:
-- `docs/reproduction_log.md`
-- `docs/issues.md`
-- `docs/results_comparison.md`
-- `docs/final_report_outline.md`
-
-### Comparison with Paper:
-N/A
-
-### Notes:
-The documentation structure is ready for recording reproduction attempts, issues, and comparisons with the original paper.
-
----
-## Entry 1
-
-### Date:
-2026-04-06
+2026-05-10
 
 ### Member:
 Lei Hu
 
 ### Branch:
-main
+member1-modeling
 
 ### Task:
-Initial environment setup, repository cloning, and dependency installation.
+Implemented and improved a simplified BERTopic reproduction pipeline for Guardian article topic modelling.
 
 ### Dataset:
-Guardian / Reddit / Twitter (metadata only)
+Guardian processed dataset (`guardian_model_ready.jsonl`)
 
 ### Script / Notebook:
-N/A
+scripts/modeling/simple_bertopic_guardian_v2.py
 
 ### Environment:
-macOS (Apple Silicon)  
-Conda environment: dcee  
-Python 3.8  
+macOS (Apple Silicon)
+Python 3.8
+Conda environment: dcee
 
 ### Parameters:
-N/A
+- BERTopic
+- all-MiniLM-L6-v2 embedding model
+- UMAP dimensionality reduction
+- min_topic_size = 4
+- n_neighbors = 5
+- custom stopword filtering
+- spaCy preprocessing with lemmatization
 
 ### Result:
-- Successfully cloned the repository and created the conda environment.  
-- Installed dependencies from requirements.txt.  
-- Resolved compatibility issues by manually installing numpy==1.23.5 and spacy==3.5.0. Environment setup completed successfully.
+An initial simplified BERTopic pipeline (v1) was first implemented to verify whether the recovered Guardian full-text dataset could successfully run through the modeling workflow.
+
+The v1 model completed successfully but generated low-quality and overly broad topics with limited interpretability.
+
+A second version (v2) was then developed with improved preprocessing, custom stopword filtering, reproducible UMAP settings, and better clustering parameters.
+
+The updated v2 pipeline generated more than 40 interpretable topics related to climate policy, renewable energy, pollution, fossil fuels, sustainability, and environmental politics.
 
 ### Error / Issue:
-- spacy installation failed due to numpy version conflict.  
-- Some packages required Python >= 3.9 while the environment used Python 3.8.  
-- Initial scripts failed due to missing full-text data and incorrect file paths.
+Initial reproduction attempts generated only two overly broad topics.
+
+The original repository also lacked a clear preprocessing workflow and relied on incomplete metadata rather than full-text content.
+
+Several parameter settings caused unstable clustering behaviour and BERTopic vectorizer errors.
 
 ### Output Files:
-N/A
+results/guardian/guardian_topic_info_v2.csv
+results/guardian/guardian_topics_v2.json
 
 ### Comparison with Paper:
-N/A
+The reproduced results do not exactly match the original paper due to missing original datasets and preprocessing differences.
+
+However, the simplified reproduction successfully generated semantically meaningful environmental and climate-related topics.
 
 ### Notes:
-- The dataset only contains metadata (URLs, IDs) and lacks full-text data required for topic modelling.  
-- Some scripts contain hard-coded absolute paths, which need to be modified for reproducibility.  
-- This step prepares the environment for further preprocessing and modelling.
----
+### Notes:
+The iterative transition from v1 to v2 became an important part of the reproduction process.
+
+The original repository did not provide a fully reproducible preprocessing pipeline. Important preprocessing operations, including lemmatization, document splitting, filtering procedures, and final modeling datasets, were either incomplete or undocumented.
+
+Although preprocessing improvements increased pipeline reproducibility and reduced lexical noise, the resulting topics remained weakly separated.
+
+This suggests that topic quality is highly dependent on the original cleaned corpus used by the authors.
+
+The project therefore focused not only on reproducing outputs, but also on documenting the practical challenges of reproducing the original research pipeline.
