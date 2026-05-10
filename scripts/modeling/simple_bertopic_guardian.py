@@ -16,11 +16,7 @@ import pandas as pd
 from bertopic import BERTopic
 from sklearn.feature_extraction.text import CountVectorizer
 
-
-# --------------------------------------------------
-# Paths
-# --------------------------------------------------
-
+# Set Paths
 ROOT = Path(__file__).resolve().parents[2]
 
 INPUT_PATH = (
@@ -36,10 +32,7 @@ OUTPUT_DIR = ROOT / "results" / "guardian"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 
-# --------------------------------------------------
 # Load data
-# --------------------------------------------------
-
 documents = []
 
 with open(INPUT_PATH, "r", encoding="utf-8") as f:
@@ -57,10 +50,7 @@ with open(INPUT_PATH, "r", encoding="utf-8") as f:
 print(f"Loaded documents: {len(documents)}")
 
 
-# --------------------------------------------------
 # BERTopic model
-# --------------------------------------------------
-
 vectorizer_model = CountVectorizer(
     stop_words="english",
     ngram_range=(1, 2),
@@ -75,10 +65,7 @@ topic_model = BERTopic(
 topics, probs = topic_model.fit_transform(documents)
 
 
-# --------------------------------------------------
 # Topic info
-# --------------------------------------------------
-
 topic_info = topic_model.get_topic_info()
 
 print(topic_info.head())
@@ -91,10 +78,7 @@ topic_info.to_csv(
 print("\nSaved topic info")
 
 
-# --------------------------------------------------
 # Save topic keywords
-# --------------------------------------------------
-
 topics_output = []
 
 for topic_id in topic_info["Topic"]:
@@ -119,3 +103,12 @@ with open(
     json.dump(topics_output, f, indent=2)
 
 print("Saved topic keywords")
+
+for topic_id in topic_info["Topic"].tolist():
+
+    if topic_id == -1:
+        continue
+
+    print(f"\nTOPIC {topic_id}")
+
+    print(topic_model.get_topic(topic_id))
