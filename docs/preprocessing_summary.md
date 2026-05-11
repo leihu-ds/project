@@ -125,6 +125,42 @@ The recovered Twitter data is stored locally as `datasets/twitter/twitter_for_mo
 The recovered Twitter data is not committed to GitHub.The generated `.jsonl` files are ignored. 
 
 The repository only includes the recovery script and documentation.
+## Text cleaning
+
+After recovering and converting the text data, I added a light text cleaning step for all three datasets.
+
+The cleaning script creates a unified `clean_text` field for The Guardian, Reddit, and Twitter/X data.
+
+The cleaning step removes basic noise such as:
+
+- URLs
+- `pic.twitter.com` links
+- HTML tags
+- HTML entities
+- extra whitespace
+- very short records
+
+The script does not apply heavy linguistic preprocessing such as stemming, lemmatization, or stopword removal. These steps are left to the modelling scripts and vectorizers.
+
+The cleaned local outputs are:
+
+```text
+datasets/processed/cleaned/guardian_cleaned.jsonl
+datasets/processed/cleaned/reddit_cleaned.jsonl
+datasets/processed/cleaned/twitter_cleaned.jsonl
+```
+
+The cleaned record counts are:
+
+```text
+Guardian: 1,456
+Reddit: 1,368
+Twitter/X: 1,500
+```
+
+The main text field after cleaning is `clean_text`.
+
+The cleaned data files are stored locally and are not committed to GitHub. The repository only includes the cleaning script and documentation.
 
 ## Recommendation
 
