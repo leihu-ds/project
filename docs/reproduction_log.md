@@ -670,3 +670,54 @@ Although preprocessing improvements increased pipeline reproducibility and reduc
 This suggests that topic quality is highly dependent on the original cleaned corpus used by the authors.
 
 The project therefore focused not only on reproducing outputs, but also on documenting the practical challenges of reproducing the original research pipeline.
+## Entry 14
+
+### Date:
+2026-05-02
+
+### Member:
+Yifan Yang (474665)
+
+### Branch:
+member2-data-preprocessing
+
+### Task:
+Added a light text cleaning step for all recovered model-ready datasets.
+
+### Dataset:
+All datasets
+
+### Script / Notebook:
+- `scripts/preprocessing/clean_model_ready_text.py`
+
+### Environment:
+- macOS
+- Conda environment `dcee`
+- Python 3.8
+- Git branch `member2-data-preprocessing`
+
+### Parameters:
+- Input files:
+  - `datasets/processed/guardian/guardian_model_ready.jsonl`
+  - `datasets/processed/reddit/reddit_model_ready.jsonl`
+  - `datasets/twitter/twitter_for_models.jsonl`
+- Output directory: `datasets/processed/cleaned/`
+- Minimum cleaned text length: 30 characters
+
+### Result:
+Added a unified light text cleaning workflow for The Guardian, Reddit, and Twitter/X. The script creates a `clean_text` field and a `clean_text_length` field for each record. The cleaned outputs contain 1,456 Guardian records, 1,368 Reddit records, and 1,500 Twitter/X records.
+
+### Error / Issue:
+One Reddit record was filtered out after cleaning because the cleaned text was shorter than 30 characters.
+
+### Output Files:
+- `scripts/preprocessing/clean_model_ready_text.py`
+- `datasets/processed/cleaned/guardian_cleaned.jsonl`
+- `datasets/processed/cleaned/reddit_cleaned.jsonl`
+- `datasets/processed/cleaned/twitter_cleaned.jsonl`
+
+### Comparison with Paper:
+The paper uses cleaned text for topic modelling, but the exact original cleaning pipeline is not fully reproducible from the released repository. This step adds a transparent and reproducible light cleaning process for the recovered text data.
+
+### Notes:
+The cleaning is intentionally light. It removes URLs, `pic.twitter.com` links, HTML tags, HTML entities, and extra whitespace, but does not apply stemming, lemmatization, or stopword removal. The cleaned data files are stored locally and are not committed to GitHub.
