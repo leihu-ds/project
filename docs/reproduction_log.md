@@ -721,3 +721,71 @@ The paper uses cleaned text for topic modelling, but the exact original cleaning
 
 ### Notes:
 The cleaning is intentionally light. It removes URLs, `pic.twitter.com` links, HTML tags, HTML entities, and extra whitespace, but does not apply stemming, lemmatization, or stopword removal. The cleaned data files are stored locally and are not committed to GitHub.
+
+## Entry 15
+
+### Date:
+2026-05-12
+
+### Member:
+Linxiao Mu
+
+### Branch:
+member3
+
+### Task:
+Built and tested reproducible BERTopic pipelines for cleaned Guardian, Reddit, and Twitter datasets using locally recovered text data.
+
+### Dataset:
+- The Guardian
+- Reddit
+- Twitter
+
+### Script / Notebook:
+- `scripts/member3/run_bertopic_guardian_cleaned.py`
+- `scripts/member3/run_bertopic_reddit_cleaned.py`
+- `scripts/member3/run_bertopic_twitter_cleaned.py`
+
+### Environment:
+- macOS
+- Conda environment `dcee`
+- Python 3.8
+- BERTopic
+- sentence-transformers
+- UMAP
+- HDBSCAN
+- Git branch `member3`
+
+### Parameters:
+- BERTopic default embedding pipeline
+- Sentence-transformers embedding model
+- UMAP dimensionality reduction
+- HDBSCAN clustering
+- Cleaned text field `clean_text` used as model input
+
+### Result:
+Successfully ran BERTopic topic modelling pipelines on cleaned Guardian, Reddit, and Twitter datasets. Generated topic information tables, topic-word tables, and document-topic assignment outputs for all three datasets.
+
+The Reddit dataset produced relatively coherent and interpretable sustainability-related topics. The Guardian dataset ran successfully but produced broader and less specialized topics. The Twitter dataset generated noisier topics containing temporal tokens and social-media-specific noise.
+
+### Error / Issue:
+The original repository scripts were not directly reproducible because repository datasets only contained metadata fields and lacked full text content required for topic modelling. Local cleaned datasets provided by member2 were required.
+
+Additional preprocessing may still be needed for Twitter data because some generated topics contain noisy date-related and platform-specific tokens.
+
+### Output Files:
+- `outputs/member3/guardian_bertopic_topic_info.csv`
+- `outputs/member3/guardian_bertopic_topic_words.csv`
+- `outputs/member3/guardian_bertopic_document_topics.csv`
+- `outputs/member3/reddit_bertopic_topic_info.csv`
+- `outputs/member3/reddit_bertopic_topic_words.csv`
+- `outputs/member3/reddit_bertopic_document_topics.csv`
+- `outputs/member3/twitter_bertopic_topic_info.csv`
+- `outputs/member3/twitter_bertopic_topic_words.csv`
+- `outputs/member3/twitter_bertopic_document_topics.csv`
+
+### Comparison with Paper:
+The BERTopic pipelines are now reproducible on locally recovered datasets, but topic quality and topic distributions have not yet been formally compared with the original paper results.
+
+### Notes:
+This step focused on validating reproducible execution of BERTopic pipelines using cleaned local datasets rather than reproducing exact paper metrics. Reddit data currently provides the strongest topic coherence among the tested datasets.
