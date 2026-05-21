@@ -789,3 +789,76 @@ The BERTopic pipelines are now reproducible on locally recovered datasets, but t
 
 ### Notes:
 This step focused on validating reproducible execution of BERTopic pipelines using cleaned local datasets rather than reproducing exact paper metrics. Reddit data currently provides the strongest topic coherence among the tested datasets.
+
+## Entry 16
+
+### Date:
+2026-05-21
+
+### Member:
+Linxiao Mu
+
+### Branch:
+member3
+
+### Task:
+Improved the Member 3 BERTopic reproduction pipeline and evaluated paper-aligned and enhanced topic modelling results.
+
+### Dataset:
+- The Guardian
+- Reddit
+- Twitter
+
+### Script / Notebook:
+- `scripts/member3/run_bertopic_repro_improved.py`
+- `outputs/member3/member3_modeling_notes.md`
+
+### Environment:
+- macOS
+- Python 3.13 virtual environment `.venv`
+- BERTopic 0.17.4
+- sentence-transformers 5.5.1
+- scikit-learn 1.8.0
+- umap-learn 0.5.12
+- PyTorch 2.12.0
+- Git branch `member3`
+
+### Parameters:
+- BERTopic with UMAP dimensionality reduction and KMeans clustering
+- The Guardian improved run: `n_gram=2`, `n_clusters=20`, `n_components=10`, `n_neighbors=20`
+- Reddit improved run: `n_gram=2`, `n_clusters=14`, `n_components=13`, `n_neighbors=15`
+- Twitter improved run: `n_gram=2`, `n_clusters=8`, `n_components=7`, `n_neighbors=15`
+- Added duplicate removal, platform-specific stopwords, Twitter quality filtering, and Guardian CE/section filtering
+
+### Result:
+The improved BERTopic pipeline ran successfully and generated updated topic information, topic-word tables, document-topic assignments, and metric summaries for all three datasets.
+
+Final improved metrics:
+- The Guardian: 976 documents, 20 topics, `C_NPMI=0.2215`, topic diversity `0.9300`
+- Reddit: 1,335 documents, 14 topics, `C_NPMI=0.0340`, topic diversity `0.9357`
+- Twitter: 839 documents, 8 topics, `C_NPMI=-0.2828`, topic diversity `0.9250`
+
+### Error / Issue:
+The original repository data still does not exactly match the paper's original datasets. Twitter coherence remains low after filtering, likely because the recovered Twitter data contains short, sparse, hashtag-style posts and does not fully match the paper's original Twitter corpus.
+
+### Output Files:
+- `scripts/member3/run_bertopic_repro_improved.py`
+- `outputs/member3/member3_modeling_notes.md`
+- `outputs/member3/guardian_bertopic_improved_topic_info.csv`
+- `outputs/member3/guardian_bertopic_improved_topic_words.csv`
+- `outputs/member3/guardian_bertopic_improved_document_topics.csv`
+- `outputs/member3/guardian_bertopic_improved_metrics.csv`
+- `outputs/member3/reddit_bertopic_improved_topic_info.csv`
+- `outputs/member3/reddit_bertopic_improved_topic_words.csv`
+- `outputs/member3/reddit_bertopic_improved_document_topics.csv`
+- `outputs/member3/reddit_bertopic_improved_metrics.csv`
+- `outputs/member3/twitter_bertopic_improved_topic_info.csv`
+- `outputs/member3/twitter_bertopic_improved_topic_words.csv`
+- `outputs/member3/twitter_bertopic_improved_document_topics.csv`
+- `outputs/member3/twitter_bertopic_improved_metrics.csv`
+
+### Comparison with Paper:
+The improved Guardian result has higher local `C_NPMI` than the paper's reported Guardian BERTopic SOO score (`0.2215` vs `0.1669`) while producing a more diverse 20-topic solution. Reddit improved from the paper's negative SOO coherence to a small positive local `C_NPMI`, with more granular community-level topics. Twitter did not match the paper's reported SOO coherence, but the filtered topics became more interpretable and aligned with climate, renewables, clean energy, carbon capture, circular economy, and nuclear-energy themes.
+
+### Notes:
+This entry records the modelling improvement stage rather than exact paper replication. The final interpretation should emphasize that Guardian and Reddit improved under the local reproducible pipeline, while Twitter remains a challenging short-text dataset where topic diversity and human interpretability are more informative than coherence alone.
