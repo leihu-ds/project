@@ -50,13 +50,47 @@ This gives the project two defensible tracks:
 2. `improved`: keep the paper model family but make preprocessing and topic
    quality reporting more robust for this group's scraped datasets.
 
-## Commands
+## How to Reproduce Member 3 Results
 
-Run the improved model for all three datasets:
+The final Member 3 run used a local Python virtual environment on macOS with
+Python 3.13. The same project can also be run in another Python environment if
+the packages in `requirements.txt` and the BERTopic dependencies are installed.
+
+Create and activate a virtual environment from the project root:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+Install the required packages:
+
+```bash
+.venv/bin/python -m pip install -r requirements.txt
+```
+
+If BERTopic dependencies are not already installed in the environment, install
+the packages used in the final Member 3 run:
+
+```bash
+.venv/bin/python -m pip install pandas bertopic umap-learn scikit-learn sentence-transformers
+```
+
+Run the final improved model for all three datasets:
 
 ```bash
 .venv/bin/python scripts/member3/run_bertopic_repro_improved.py --dataset all --mode improved
 ```
+
+The script expects the cleaned text files to be available locally:
+
+- `datasets/theguardian/guardian_cleaned.jsonl`
+- `datasets/reddit/reddit_cleaned.jsonl`
+- `datasets/twitter/twitter_cleaned.jsonl`
+
+The default output location is `outputs/member3/`.
+
+## Additional Commands
 
 Run the paper SOO baseline for Twitter:
 
@@ -91,6 +125,27 @@ After adding Twitter quality filtering and Guardian CE/section filtering:
 | The Guardian | 976 | 20 | 0.2215 | 0.9300 | Cleaner than the earlier Guardian run; sports/film/recipe noise is reduced while policy, energy, pollution, and climate topics remain. |
 | Reddit | 1335 | 14 | 0.0340 | 0.9357 | More granular than the paper SOO two-topic result; useful for community-level themes such as plastics, bins, clothing, reuse, and batteries. |
 | Twitter | 839 | 8 | -0.2828 | 0.9250 | Top words are much cleaner after filtering, but coherence remains weak because short texts and hashtag-style discourse are sparse and fragmented. |
+
+## Short Comparison with the Paper
+
+| Dataset | Paper SOO C_NPMI | Our improved C_NPMI | Main finding |
+| --- | ---: | ---: | --- |
+| The Guardian | 0.1669 | 0.2215 | Improved local coherence and broader 20-topic coverage of policy, energy, pollution, and climate themes. |
+| Reddit | -0.0609 | 0.0340 | Improved from negative to small positive local coherence, with more granular community-level topics. |
+| Twitter | 0.1354 | -0.2828 | Did not match paper coherence, but filtering produced more interpretable climate, renewable energy, circular economy, and nuclear topics. |
+
+## Twitter Limitation
+
+The Twitter result should be interpreted carefully. The recovered Twitter corpus
+does not fully match the original paper's Twitter dataset, and many records are
+short, sparse, hashtag-heavy posts. These characteristics weaken pairwise
+co-occurrence measures such as C_NPMI even when the top words are interpretable.
+
+The final Twitter topics are qualitatively cleaner than the initial Twitter
+outputs because date tokens, account-specific terms, and generic event
+promotion terms were reduced. However, the negative coherence score indicates
+that the filtered Twitter corpus remains fragmented. For this dataset, topic
+diversity and qualitative inspection are more informative than coherence alone.
 
 Interpretation for the report: the final improved run is strongest for The
 Guardian and Reddit. Twitter should be discussed as a platform where topic

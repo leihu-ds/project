@@ -1,3 +1,28 @@
+"""Member 3 BERTopic reproduction and improvement pipeline.
+
+This script supports three reproducible modelling tracks:
+
+- ``paper-soo``: run BERTopic with the single-objective optimisation
+  parameters reported in the paper's Table 2.
+- ``paper-moo``: run BERTopic with the multi-objective optimisation
+  parameters reported in the paper's Table 3.
+- ``improved``: run the project team's enhanced version with duplicate
+  removal, platform-specific stopwords, Twitter quality filtering, and
+  Guardian CE/section filtering.
+
+The script writes all outputs to ``outputs/member3/``:
+
+- ``*_topic_info.csv``: topic sizes and representative words/documents.
+- ``*_topic_words.csv``: top topic words and c-TF-IDF scores.
+- ``*_document_topics.csv``: document-level topic assignments.
+- ``*_metrics.csv``: local C_NPMI and topic diversity summaries.
+
+Example:
+
+    .venv/bin/python scripts/member3/run_bertopic_repro_improved.py \
+        --dataset all --mode improved
+"""
+
 from __future__ import annotations
 
 import argparse
