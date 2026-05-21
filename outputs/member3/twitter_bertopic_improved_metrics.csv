@@ -1,0 +1,2 @@
+dataset,mode,n_gram,n_clusters,n_components,n_neighbors,documents,topics,c_npmi,topic_diversity
+twitter,improved,2,8,7,15,839,8,-0.2828273108853921,0.925
