@@ -1,0 +1,2 @@
+dataset,mode,n_gram,n_clusters,n_components,n_neighbors,documents,topics,c_npmi,topic_diversity
+guardian,improved,2,20,10,20,976,20,0.2215193722386124,0.93
