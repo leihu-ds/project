@@ -862,6 +862,7 @@ The improved Guardian result has higher local `C_NPMI` than the paper's reported
 
 ### Notes:
 This entry records the modelling improvement stage rather than exact paper replication. The final interpretation should emphasize that Guardian and Reddit improved under the local reproducible pipeline, while Twitter remains a challenging short-text dataset where topic diversity and human interpretability are more informative than coherence alone.
+
 ## Entry 17
 
 ### Date:
@@ -905,3 +906,43 @@ The final documentation reports the project as a partial reproduction. The team 
 
 ### Notes:
 This final step completes Member 4's role in results and documentation. The main contribution is making the reproduction process transparent by documenting what worked, what failed, what was fixed, and what limitations remained.
+
+## Entry 18
+
+### Date:
+2026-06-01
+
+### Member:
+Lei Hu
+
+### Branch:
+main
+
+### Task:
+Reorganized and documented the BERTopic modeling workflows to make the project structure cleaner and easier to reproduce.
+
+### Dataset:
+Guardian, Reddit, and Twitter cleaned datasets
+
+### Script / Notebook:
+scripts/modeling/
+
+### Result:
+All Member 3 BERTopic scripts were reorganized from `scripts/member3/` into a unified `scripts/modeling/` directory to improve project structure, readability, and reproducibility and added a detailed README explaining:
+
+- baseline vs improved workflows
+- preprocessing differences
+- parameter settings
+- output files
+- reproducibility limitations
+
+The updated structure makes it much easier to understand which scripts reproduce the paper settings and which scripts contain improved preprocessing or filtering steps.
+
+### Error / Issue:
+The original repository lacked clear documentation for the different BERTopic experiments, and several scripts had overlapping functionality.
+
+### Output Files:
+- scripts/modeling/README.md
+
+### Notes:
+This update focused on improving readability, organization, and reproducibility documentation rather than changing the core BERTopic modeling logic.
