@@ -862,3 +862,46 @@ The improved Guardian result has higher local `C_NPMI` than the paper's reported
 
 ### Notes:
 This entry records the modelling improvement stage rather than exact paper replication. The final interpretation should emphasize that Guardian and Reddit improved under the local reproducible pipeline, while Twitter remains a challenging short-text dataset where topic diversity and human interpretability are more informative than coherence alone.
+## Entry 17
+
+### Date:
+2026-06-01
+
+### Member:
+Fan Zhao
+
+### Branch:
+member4
+
+### Task:
+Final documentation integration and reproducibility summary.
+
+### Dataset:
+The Guardian / Reddit / Twitter/X
+
+### Script / Notebook:
+N/A
+
+### Environment:
+GitHub web interface
+
+### Parameters:
+N/A
+
+### Result:
+Integrated the final information from Member 1, Member 2, and Member 3 into the Member 4 documentation. Updated the results comparison using the final improved BERTopic outputs from Member 3. Added the distinction between initial metadata records and final model-ready datasets based on Member 2's data reproduction summary. Created the final reproducibility report to summarise the overall workflow, issues, results, team contributions, and limitations.
+
+### Error / Issue:
+No new technical error occurred at this stage. The main remaining limitation is that the original full-text and cleaned datasets used in the paper were not fully available, so exact replication was not possible.
+
+### Output Files:
+- docs/results_comparison.md
+- docs/final_report.md
+- docs/issues.md
+- docs/reproduction_log.md
+
+### Comparison with Paper:
+The final documentation reports the project as a partial reproduction. The team successfully generated local BERTopic outputs for The Guardian, Reddit, and Twitter/X, but the results cannot be treated as exact replications because the recovered local datasets differ from the original paper corpus.
+
+### Notes:
+This final step completes Member 4's role in results and documentation. The main contribution is making the reproduction process transparent by documenting what worked, what failed, what was fixed, and what limitations remained.
