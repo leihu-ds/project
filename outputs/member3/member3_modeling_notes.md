@@ -8,23 +8,23 @@ using C_NPMI.
 
 Paper SOO BERTopic parameters:
 
-| Dataset | n_gram | n_clusters | n_components | n_neighbors | Paper C_NPMI |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| The Guardian | 2 | 2 | 5 | 20 | 0.1669 |
-| Reddit | 2 | 2 | 15 | 20 | -0.0609 |
-| Twitter | 2 | 10 | 10 | 10 | 0.1354 |
+| Dataset      | n_gram | n_clusters | n_components | n_neighbors | Paper C_NPMI |
+| ------------ | -----: | ---------: | -----------: | ----------: | -----------: |
+| The Guardian |      2 |          2 |            5 |          20 |       0.1669 |
+| Reddit       |      2 |          2 |           15 |          20 |      -0.0609 |
+| Twitter      |      2 |         10 |           10 |          10 |       0.1354 |
 
 Paper MOO BERTopic parameters:
 
-| Dataset | n_gram | n_clusters | n_components | n_neighbors | Paper C_NPMI | Diversity | Perplexity |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| The Guardian | 1 | 20 | 11 | 19 | 0.1381 | 0.9886 | 1.4469 |
-| Reddit | 1 | 14 | 13 | 15 | -0.2627 | 0.8558 | 8.1827 |
-| Twitter | 1 | 8 | 7 | 15 | -0.0111 | 0.9486 | 74.9202 |
+| Dataset      | n_gram | n_clusters | n_components | n_neighbors | Paper C_NPMI | Diversity | Perplexity |
+| ------------ | -----: | ---------: | -----------: | ----------: | -----------: | --------: | ---------: |
+| The Guardian |      1 |         20 |           11 |          19 |       0.1381 |    0.9886 |     1.4469 |
+| Reddit       |      1 |         14 |           13 |          15 |      -0.2627 |    0.8558 |     8.1827 |
+| Twitter      |      1 |          8 |            7 |          15 |      -0.0111 |    0.9486 |    74.9202 |
 
 ## Current Improvement Direction
 
-The script `scripts/member3/run_bertopic_repro_improved.py` keeps the paper's
+The script `scripts/modeling/run_bertopic_repro_improved.py` keeps the paper's
 BERTopic structure but improves the local reproducibility pipeline:
 
 - exact duplicate removal on the model text;
@@ -79,7 +79,7 @@ the packages used in the final Member 3 run:
 Run the final improved model for all three datasets:
 
 ```bash
-.venv/bin/python scripts/member3/run_bertopic_repro_improved.py --dataset all --mode improved
+.venv/bin/python scripts/modeling/run_bertopic_repro_improved.py --dataset all --mode improved
 ```
 
 The script expects the cleaned text files to be available locally:
@@ -95,44 +95,44 @@ The default output location is `outputs/member3/`.
 Run the paper SOO baseline for Twitter:
 
 ```bash
-.venv/bin/python scripts/member3/run_bertopic_repro_improved.py --dataset twitter --mode paper-soo
+.venv/bin/python scripts/modeling/run_bertopic_repro_improved.py --dataset twitter --mode paper-soo
 ```
 
 Run the paper MOO parameter set for Reddit:
 
 ```bash
-.venv/bin/python scripts/member3/run_bertopic_repro_improved.py --dataset reddit --mode paper-moo
+.venv/bin/python scripts/modeling/run_bertopic_repro_improved.py --dataset reddit --mode paper-moo
 ```
 
 Run a quick sample check:
 
 ```bash
-.venv/bin/python scripts/member3/run_bertopic_repro_improved.py --dataset twitter --mode improved --sample 200
+.venv/bin/python scripts/modeling/run_bertopic_repro_improved.py --dataset twitter --mode improved --sample 200
 ```
 
 Run the local SOO-style grid search:
 
 ```bash
-.venv/bin/python scripts/member3/run_bertopic_repro_improved.py --dataset twitter --mode grid-search
+.venv/bin/python scripts/modeling/run_bertopic_repro_improved.py --dataset twitter --mode grid-search
 ```
 
 ## Latest Improved Results
 
 After adding Twitter quality filtering and Guardian CE/section filtering:
 
-| Dataset | Documents | Topics | C_NPMI | Topic diversity | Reading |
-| --- | ---: | ---: | ---: | ---: | --- |
-| The Guardian | 976 | 20 | 0.2215 | 0.9300 | Cleaner than the earlier Guardian run; sports/film/recipe noise is reduced while policy, energy, pollution, and climate topics remain. |
-| Reddit | 1335 | 14 | 0.0340 | 0.9357 | More granular than the paper SOO two-topic result; useful for community-level themes such as plastics, bins, clothing, reuse, and batteries. |
-| Twitter | 839 | 8 | -0.2828 | 0.9250 | Top words are much cleaner after filtering, but coherence remains weak because short texts and hashtag-style discourse are sparse and fragmented. |
+| Dataset      | Documents | Topics |  C_NPMI | Topic diversity | Reading                                                                                                                                           |
+| ------------ | --------: | -----: | ------: | --------------: | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The Guardian |       976 |     20 |  0.2215 |          0.9300 | Cleaner than the earlier Guardian run; sports/film/recipe noise is reduced while policy, energy, pollution, and climate topics remain.            |
+| Reddit       |      1335 |     14 |  0.0340 |          0.9357 | More granular than the paper SOO two-topic result; useful for community-level themes such as plastics, bins, clothing, reuse, and batteries.      |
+| Twitter      |       839 |      8 | -0.2828 |          0.9250 | Top words are much cleaner after filtering, but coherence remains weak because short texts and hashtag-style discourse are sparse and fragmented. |
 
 ## Short Comparison with the Paper
 
-| Dataset | Paper SOO C_NPMI | Our improved C_NPMI | Main finding |
-| --- | ---: | ---: | --- |
-| The Guardian | 0.1669 | 0.2215 | Improved local coherence and broader 20-topic coverage of policy, energy, pollution, and climate themes. |
-| Reddit | -0.0609 | 0.0340 | Improved from negative to small positive local coherence, with more granular community-level topics. |
-| Twitter | 0.1354 | -0.2828 | Did not match paper coherence, but filtering produced more interpretable climate, renewable energy, circular economy, and nuclear topics. |
+| Dataset      | Paper SOO C_NPMI | Our improved C_NPMI | Main finding                                                                                                                              |
+| ------------ | ---------------: | ------------------: | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| The Guardian |           0.1669 |              0.2215 | Improved local coherence and broader 20-topic coverage of policy, energy, pollution, and climate themes.                                  |
+| Reddit       |          -0.0609 |              0.0340 | Improved from negative to small positive local coherence, with more granular community-level topics.                                      |
+| Twitter      |           0.1354 |             -0.2828 | Did not match paper coherence, but filtering produced more interpretable climate, renewable energy, circular economy, and nuclear topics. |
 
 ## Twitter Limitation
 
