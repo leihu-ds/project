@@ -1,4 +1,21 @@
-# Issues and Fixes
+
+# Reproducibility Issues
+
+## Summary Table
+
+| Issue                          | Description                                                                                                                  | Impact                                                                                         | Action Taken                                                                               | Status             |
+| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ------------------ |
+| Missing full-text data         | The released repository data mainly contained metadata such as URLs, IDs, dates, and sections.                               | The original topic modelling scripts could not run directly.                                   | The team recovered usable text data and documented the limitation.                         | Partially resolved |
+| Metadata-only records          | The initial record counts were much larger than the final modelling datasets because most records did not contain full text. | Dataset size could be misleading if metadata records were confused with model-ready documents. | The team documented the difference between metadata records and final model-ready records. | Documented         |
+| Hard-coded file paths          | Some scripts expected local absolute paths from the original author's machine.                                               | Scripts failed on other machines.                                                              | Paths were documented and replaced or avoided in the local workflow.                       | Partially resolved |
+| Dependency conflicts           | Some package versions were difficult to install consistently.                                                                | Environment setup was unstable.                                                                | Python 3.8 and key package fixes were documented.                                          | Documented         |
+| Missing preprocessing details  | The original cleaning pipeline was not fully documented.                                                                     | Exact reproduction of the original corpus was not possible.                                    | A transparent local cleaning workflow was added.                                           | Partially resolved |
+| Non-identical recovered corpus | The recovered data may not match the original paper dataset.                                                                 | Results are comparable but not identical.                                                      | The project reports partial reproduction rather than full replication.                     | Limitation         |
+| Twitter/X short-text noise     | Twitter/X posts were short, sparse, and hashtag-heavy.                                                                       | C_NPMI remained low even after filtering.                                                      | Additional filtering and qualitative interpretation were used.                             | Limitation         |
+
+## Main Conclusion
+
+The main reproducibility problem was not the topic modelling algorithm itself, but the gap between the released metadata files and the full cleaned text corpus required for topic modelling. Because of this, the project should be described as a partial reproduction rather than an exact replication.
 
 ## Purpose
 This file tracks technical, data, and reproducibility issues encountered during the project.
