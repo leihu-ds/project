@@ -2,9 +2,9 @@
 
 ## 1. Introduction
 
-This project is a reproducibility study of a published topic modelling research project on the Digital Circular Electrochemical Economy (DCEE). The original study applied several topic modelling methods, including BERTopic, LDA, and CorEx, to public attention text data collected from The Guardian, Reddit, and Twitter/X.
+This project is a reproducibility study of a published topic modelling project on the Digital Circular Electrochemical Economy (DCEE). The original study used several topic modelling methods, including BERTopic, LDA, and CorEx, on public attention text data from The Guardian, Reddit, and Twitter/X.
 
-The main goal of this project was not to improve model performance. Instead, the project focused on evaluating whether the original research workflow could be reproduced using the published GitHub repository and available datasets. The project also aimed to identify practical reproducibility problems and document the steps needed to make the workflow more transparent.
+This project did not aim to improve model performance. Instead, we focused on whether the published repository and available data were enough to rerun the research workflow. We also recorded the problems we found during reproduction and the local changes made to make the workflow easier to follow.
 
 ## 2. Original Study and Repository
 
@@ -58,9 +58,10 @@ The initial environment setup was possible, but dependency conflicts and missing
 
 ## 5. Dataset and Preprocessing Reproduction
 
-The dataset inspection showed that the visible repository files mainly contained metadata rather than full text. For example, The Guardian data contained fields such as date, section, and URL. Reddit data included source, type, URL, created time, and post ID. Twitter/X data mainly included IDs, user IDs, and URLs.
+The dataset inspection showed that the visible repository files mostly contained metadata rather than full text. For example, The Guardian data contained fields such as date, section, and URL. Reddit data included source, type, URL, created time, and post ID. Twitter/X data mainly included IDs, user IDs, and URLs.
 
-This created a major reproducibility problem because topic modelling requires actual text input. The model scripts expected full article text, Reddit post text, tweet text, titles, or cleaned text fields, but these were not directly available in the repository data.
+This limited direct reproduction because topic modelling requires actual text input. The model scripts expected article text, Reddit post text, tweet text, titles, or cleaned text fields. These fields were not directly available in the repository data.
+
 
 ### 5.1 Metadata Records vs Final Modelling Datasets
 
@@ -200,16 +201,16 @@ Member 4 focused on results and documentation. This included maintaining the rep
 
 ## 11. Discussion
 
-The project shows that code availability alone is not enough for full reproducibility. Even though the original repository was available, direct reproduction was limited by missing full-text data, unclear preprocessing steps, hard-coded paths, and dependency issues.
+This project shows that code availability alone is not enough for reproducibility. Even though the original repository was available, direct reproduction was limited by missing full-text data, unclear preprocessing steps, hard-coded paths, and dependency issues.
 
-The strongest local reproduction results came from The Guardian and Reddit. Both datasets produced interpretable BERTopic topics under the improved local pipeline. Twitter/X remained more difficult because the recovered text was short and noisy, which weakened coherence scores.
+The Guardian and Reddit produced the most usable local results. Both datasets gave interpretable BERTopic topics under the local improved pipeline. Twitter/X remained more difficult because the recovered text was short, sparse, and noisy, which affected the coherence score.
 
-The comparison with the original paper should therefore be interpreted carefully. We can compare model structure, parameter choices, number of topics, C_NPMI, topic diversity, and qualitative topic themes. However, we cannot claim exact reproduction because our recovered datasets do not fully match the original paper datasets.
+The comparison with the original paper should be read carefully. We can compare model structure, parameter choices, number of topics, C_NPMI, topic diversity, and topic themes. However, we cannot claim exact replication because the recovered datasets do not fully match the original paper datasets.
 
 ## 12. Conclusion
 
-This project successfully documented and tested the reproducibility of a topic modelling study on public attention data in the DCEE context. The team was able to reconstruct usable data, run local BERTopic pipelines, generate outputs, and compare results with the original paper where possible.
+This project documented and tested the reproducibility of a topic modelling study on public attention data in the DCEE context. The team reconstructed usable local data, ran BERTopic pipelines, generated outputs, and compared results with the original paper where possible.
 
-However, exact reproduction was not possible because the full original cleaned datasets and complete preprocessing workflow were not fully available. The final result should therefore be reported as a partial reproduction and reproducibility evaluation rather than an exact replication.
+Exact reproduction was not supported by the available materials. The full original cleaned datasets and the complete preprocessing workflow were not fully available. For this reason, the final result should be reported as a partial reproduction and reproducibility evaluation rather than an exact replication.
 
-The project's main contribution is the transparent documentation of the reproduction process, including what worked, what failed, what was addressed, and what limitations remained.
+The main contribution of the project is the documentation of the reproduction process, including what worked, what failed, what was addressed, and what limitations remained.
