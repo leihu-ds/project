@@ -217,3 +217,11 @@ If you use our dataset, please cite the following entry in your BibTeX:
   note      = {EAI2024Data(.zip)}
 }
 ```
+
+## AI Usage
+
+Generative AI tools (ChatGPT) were used during this project to assist with code explanation, debugging, documentation, repository organization, and writing support.
+
+All project outputs, analyses, and conclusions were reviewed and verified by the project team.
+
+The authors take full responsibility for the content, results, and conclusions presented in this repository.
