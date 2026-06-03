@@ -74,15 +74,23 @@ The larger dataset numbers refer to metadata records available in the repository
 | Twitter/X external links |                        41,575 | urls, user_id                           | No                                 |
 | Twitter/X related IDs    |                        12,458 | user_id                                 | No                                 |
 
-After preprocessing and text recovery, the final model-ready datasets were smaller:
+After preprocessing and text recovery, the model-ready datasets before final filtering were smaller:
 
-| Dataset      | Final Model-Ready Records | Explanation                           |
-| ------------ | ------------------------: | ------------------------------------- |
-| The Guardian |                     1,456 | Recovered full-text Guardian articles |
-| Reddit       |                     1,369 | Model-ready Reddit posts              |
-| Twitter/X    |                     1,500 | Recovered Twitter/X text records      |
+| Dataset      | Model-Ready Records Before Final Filtering | Explanation                           |
+| ------------ | -----------------------------------------: | ------------------------------------- |
+| The Guardian |                                      1,456 | Recovered full-text Guardian articles |
+| Reddit       |                                      1,369 | Model-ready Reddit posts before final cleaning/filtering |
+| Twitter/X    |                                      1,500 | Recovered Twitter/X text records      |
 
-This distinction between metadata records and model-ready text records is a central reproducibility issue. Although the repository contains a relatively large number of records, most of them are not directly usable for topic modelling because they do not include full text.
+These model-ready counts are not the same as the final documents used in the improved BERTopic run. The final improved run applied additional cleaning, duplicate removal, and dataset-specific quality filtering.
+
+| Dataset      | Final Documents Used in Improved BERTopic |
+| ------------ | ----------------------------------------: |
+| The Guardian |                                       976 |
+| Reddit       |                                     1,335 |
+| Twitter/X    |                                       839 |
+
+This distinction between metadata records, model-ready records, and final modelling documents is a central reproducibility issue. Although the repository contains a relatively large number of records, most of them are not directly usable for topic modelling because they do not include full text. After text recovery and preprocessing, only records with usable cleaned text could be included in the improved modelling pipeline.
 
 ### 5.2 Data Recovery and Cleaning
 
@@ -108,7 +116,7 @@ The final output files include:
 * `outputs/member3/twitter_bertopic_improved_*`
 * `outputs/member3/member3_modeling_notes.md`
 
-The command used to generate the final improved BERTopic outputs was:
+On the Member 3 branch, the command used to generate the final improved BERTopic outputs was:
 
 ```bash
 .venv/bin/python scripts/member3/run_bertopic_repro_improved.py --dataset all --mode improved
@@ -204,4 +212,4 @@ This project successfully documented and tested the reproducibility of a topic m
 
 However, exact reproduction was not possible because the full original cleaned datasets and complete preprocessing workflow were not fully available. The final result should therefore be reported as a partial reproduction and reproducibility evaluation rather than an exact replication.
 
-The project's main contribution is the transparent documentation of the reproduction process, including what worked, what failed, what was fixed, and what limitations remained.
+The project's main contribution is the transparent documentation of the reproduction process, including what worked, what failed, what was addressed, and what limitations remained.

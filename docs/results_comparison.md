@@ -36,15 +36,23 @@ One important issue in the reproduction process is that the initial dataset reco
 | Twitter/X external links |                        41,575 | urls, user_id                           | No                                 |
 | Twitter/X related IDs    |                        12,458 | user_id                                 | No                                 |
 
-After preprocessing and text recovery, the final model-ready datasets were smaller:
+After preprocessing and text recovery, the model-ready datasets before final filtering were smaller:
 
-| Dataset      | Final Model-Ready Records | Explanation                           |
-| ------------ | ------------------------: | ------------------------------------- |
-| The Guardian |                     1,456 | Recovered full-text Guardian articles |
-| Reddit       |                     1,369 | Model-ready Reddit posts              |
-| Twitter/X    |                     1,500 | Recovered Twitter/X text records      |
+| Dataset      | Model-Ready Records Before Final Filtering | Explanation                                              |
+| ------------ | -----------------------------------------: | -------------------------------------------------------- |
+| The Guardian |                                      1,456 | Recovered full-text Guardian articles                    |
+| Reddit       |                                      1,369 | Model-ready Reddit posts before final cleaning/filtering |
+| Twitter/X    |                                      1,500 | Recovered Twitter/X text records                         |
 
-This distinction is central to the reproducibility evaluation. The repository contains many records, but most of them are metadata records rather than full-text documents. Only records with recovered and usable text could be included in the modelling pipeline.
+These model-ready counts are not the same as the final documents used in the improved BERTopic run. The final improved run applied additional cleaning, duplicate removal, and dataset-specific quality filtering.
+
+| Dataset      | Final Documents Used in Improved BERTopic |
+| ------------ | ----------------------------------------: |
+| The Guardian |                                       976 |
+| Reddit       |                                     1,335 |
+| Twitter/X    |                                       839 |
+
+This distinction is central to the reproducibility evaluation. The repository contains many records, but most of them are metadata records rather than full-text documents. After text recovery and preprocessing, only records with usable cleaned text could be included in the improved modelling pipeline.
 
 ## Our Final Improved BERTopic Results
 
