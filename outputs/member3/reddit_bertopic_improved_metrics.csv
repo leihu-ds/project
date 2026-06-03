@@ -1,0 +1,2 @@
+dataset,mode,n_gram,n_clusters,n_components,n_neighbors,documents,topics,c_npmi,topic_diversity
+reddit,improved,2,14,13,15,1335,14,0.03404453756355659,0.9357142857142857

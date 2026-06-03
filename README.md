@@ -20,6 +20,22 @@ The main dataset for this project is now publicly available via the university's
 
 The datasets and experimental results are made publicly available following the 🔐 [EPSRC Data Storage Policy](https://www.ukri.org/who-we-are/epsrc/our-policies-and-standards/policy-framework-on-research-data/principles/) and 📜 [GDPR Regulations](https://gdpr-info.eu/).
 
+### 📦 Reproduction Datasets
+
+The processed datasets used for the reproduction experiments are publicly available on Zenodo:
+
+- DOI: https://doi.org/10.5281/zenodo.20516478
+
+Included datasets:
+
+- `guardian_model_ready.jsonl`
+- `reddit_model_ready.jsonl`
+- `twitter_cleaned.jsonl`
+
+These files are the model-ready datasets used directly in the BERTopic reproduction workflows.
+
+Some original raw datasets are not redistributed because of API and platform restrictions.
+
 ### 🏆 Publication
 
 The [paper](https://www.sciencedirect.com/science/article/pii/S2666546824000995) has been published in the **JCR Q1** Elsevier journal **[Energy and AI](https://www.sciencedirect.com/journal/energy-and-ai)** 🎊 
@@ -49,9 +65,20 @@ To ensure compatibility with the code, it is recommended to create a Python 3.8 
      source venv/bin/activate
      ```
 4. Install the required packages:
-   ```sh
-   pip install -r requirements.txt
+
+    ```bash
+     pip install -r requirements_reproducible.txt
+    ```
+
+     If you only need a lighter environment for development, you can also use:
+
+   ```bash
+     pip install -r requirements.txt
    ```
+   To ensure stronger reproducibility, package versions can also be frozen locally:
+
+   ```sh
+   pip freeze > requirements-lock.txt
 
 ##### Option 2: Using conda
 
@@ -65,8 +92,8 @@ To ensure compatibility with the code, it is recommended to create a Python 3.8 
    conda activate dcee
    ```
 4. Install the required packages:
-   ```sh
-   pip install -r requirements.txt
+   ```bash
+   pip install -r requirements_reproducible.txt
    ```
 
 ### 🚀 Running the Scripts
@@ -77,6 +104,63 @@ To run a specific script, navigate to its directory and execute the script. For 
 ```sh
 cd scripts/bertopic
 python bert_grid_guardian.py
+```
+
+### Additional Reproducible BERTopic Workflows
+
+Additional BERTopic reproduction workflows developed during the reproduction process are available in:
+
+```text
+
+scripts/modeling/
+
+```
+
+These workflows include:
+
+- baseline reproductions
+
+- improved preprocessing pipelines
+
+- reproducible BERTopic experiments
+
+- local evaluation metrics
+
+- unified multi-dataset workflows
+
+For most reproduction experiments, the recommended script is:
+
+```sh
+
+python scripts/modeling/run_bertopic_repro_improved.py --dataset all --mode improved
+
+```
+
+### Expected Dataset Locations
+
+The final BERTopic workflows expect cleaned datasets to exist locally:
+
+```text
+datasets/theguardian/guardian_cleaned.jsonl
+datasets/reddit/reddit_cleaned.jsonl
+datasets/twitter/twitter_cleaned.jsonl
+```
+
+### Outputs
+
+Most BERTopic workflows generate:
+
+```text
+*_topic_info.csv
+*_topic_words.csv
+*_document_topics.csv
+*_metrics.csv
+```
+
+Outputs are typically written to:
+
+```text
+outputs/member3/
 ```
 
 ### License
@@ -90,6 +174,20 @@ This project is licensed under the **Apache 2.0 License** - see the [LICENSE](LI
 For any questions or further information, please contact the project team at 🌐 [Digital Circular Electrochemical Economy (DCEE) Project](https://dcee.org.uk/) and 🏛️ [National Interdisciplinary Centre for the Circular Chemical Economy](https://www.circular-chemical.org/).
 
 ---
+
+### Reproducibility Notes
+
+During reproduction we found that several preprocessing and modelling details from the original repository were incomplete or undocumented.
+
+The reproduction work therefore focused not only on rerunning the original models, but also on:
+
+- improving preprocessing transparency
+- documenting environment setup
+- creating reproducible workflows
+- comparing baseline and improved pipelines
+- evaluating topic quality across datasets
+
+The repository is intended to support transparent and reproducible topic modelling experiments rather than distributing platform-restricted raw data.
 
 ### Citation
 

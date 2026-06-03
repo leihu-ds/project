@@ -1,16 +1,27 @@
-# HPC Files
+# HPC / runtime outputs
 nohup.out
+
+# Local raw and processed datasets
+datasets/raw/
+datasets/processed/
 datasets/theguardian/all_keywords_data/guardian_all_data
+
+# Large local data files
+*.zip
+*.pkl
+*.parquet
+
+# Modeling outputs generated locally
+results/
 
 # IDE and MacOS Caches
 .idea/
 .ipynb_checkpoints/
 .pytest_cache/
-__pycache__/
 .DS_Store
 .DS_Store%
 
-# Byte-compiled / Optimised / DLL files
+# Python cache
 __pycache__/
 *.py[cod]
 *$py.class
@@ -37,11 +48,3 @@ share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-# Processed datasets
-datasets/processed/
-
-# Modeling outputs
-results/
-
-# macOS files
-.DS_Store
